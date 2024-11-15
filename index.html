@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="password"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Update Your Information</h2>
+        <form id="infoForm">
+            <!-- Personal Info Section -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+            
+            <!-- Confidential Project Info Section -->
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" name="current-password" required>
+            
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            
+            <label for="repeat-new-password">Repeat New Password:</label>
+            <input type="password" id="repeat-new-password" name="repeat-new-password" required>
+            
+            <!-- Submit Button -->
+            <button type="submit">Submit Information</button>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script> <!-- Link to the main scripts file -->
+
+    <script>
+        // Handle form submission
+        document.getElementById('infoForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from actually submitting
+
+            // Collect form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const repeatNewPassword = document.getElementById('repeat-new-password').value;
+
+            // Check if new passwords match
+            if (newPassword !== repeatNewPassword) {
+                alert('The new passwords do not match. Please try again.');
+                return;
+            }
+
+            // Call the phishing attempt handling function from scripts.js
+            handlePhishingAttempt(email);
+
+            // Show phishing alert
+            alert('You have submitted confidential information, including your password details. Unfortunately, your data has been compromised. Be cautious and remember to protect your personal information.');
+        });
+    </script>
+</body>
+</html>
